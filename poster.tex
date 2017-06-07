@@ -1,0 +1,306 @@
+
+\documentclass[final]{beamer}
+
+\usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
+\usepackage{ amssymb }
+%\usetheme{confposter} % Use the confposter theme supplied with this template
+\usetheme[faculty=chemo]{fibeamer} % Uncomment to use Masaryk University's fibeamer theme instead.
+
+
+\newlength{\sepwid}
+\newlength{\onecolwid}
+\newlength{\twocolwid}
+\newlength{\threecolwid}
+\setlength{\paperwidth}{46.8in} % A0 width: 46.8in
+\setlength{\paperheight}{33.1in} % A0 height: 33.1in
+\setlength{\sepwid}{0.024\paperwidth} % Separation width (white space) between columns
+\setlength{\onecolwid}{0.21\paperwidth} % Width of one column
+\setlength{\twocolwid}{0.451\paperwidth} % Width of two columns
+\setlength{\threecolwid}{0.678\paperwidth} % Width of three columns
+%-----------------------------------------------------------
+
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{arg}\,\operatorname{max}}\;}
+
+\usepackage{graphicx}  % Required for including images
+
+\usepackage{booktabs} % Top and bottom rules for tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION 
+%----------------------------------------------------------------------------------------
+
+\title{An Expert System for Medical Differential Diagnosis} % Poster title
+
+\author{Mert Cem Ta\c{s}demir\\Advisor: Assoc. Prof. Ali Taylan Cemgil } % Author(s)
+
+
+\institute{Bo\u{g}azi\c{c}i University Computer Engineering Department} % Institution(s)
+
+
+
+\begin{document}
+
+\addtobeamertemplate{block end}{}{\vspace*{1.3ex}} % White space under blocks
+\addtobeamertemplate{block example end}{}{\vspace*{1.3ex}} % White space under example blocks
+\addtobeamertemplate{block alerted end}{}{\vspace*{1.3ex}} % White space under highlighted (alert) blocks
+
+\setlength{\belowcaptionskip}{1.3ex} % White space under figures
+\setlength\belowdisplayshortskip{1.3ex} % White space under equations
+
+\begin{frame} % The whole poster is enclosed in one beamer frame
+
+%==========================Begin Head===============================
+  \begin{columns}
+ 
+  \begin{column}{0.15\linewidth}
+  \centering
+   \includegraphics[width=0.6\textwidth]{img/f2.eps}
+    \hspace{5cm}
+   \end{column}
+   
+   \begin{column}{0.7\linewidth}
+    \vskip1cm
+    \centering
+    \usebeamercolor{title in headline}{\color{fg}\Huge{\textbf{\inserttitle}}\\[0.5ex]}
+    \usebeamercolor{author in headline}{\color{fg}\Large{\insertauthor}\\[1ex]}
+    \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}
+    \vskip1cm
+   \end{column}
+   \vspace{1cm}
+   \begin{column}{0.15\linewidth}
+    \hspace{5cm}
+   \centering
+   \includegraphics[width=0.6\textwidth]{img/f2.eps}
+   \end{column}
+  \end{columns}
+
+ \vspace{1cm}
+
+%==========================End Head===============================
+
+\begin{columns}[t] % The whole poster consists of three major columns, the second of which is split into two columns twice - the [t] option aligns each column's content to the top
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The first column
+
+%----------------------------------------------------------------------------------------
+%	OBJECTIVES
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Objectives}
+ The project consists of two essential parts. One of them is to find the best set of diagnosis given a set of symptoms. The other is to find the best question to be asked to the patient to find the diagnosis.
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+
+\begin{exampleblock}{Network Model \& Approach}
+
+For the first part we tried to estimate maximum the probability of observing a disease combination  $d^*$ , given set of symptoms $s_{1:k}$ where $k<j$, and $d^*$ consists of $d_{1:m<t}$'s where $t$ is a constant that reflects the maximum number of concurrent diseases \textit{and we took it $3$ for the sake of computational complexity}. In other words, we tried to make a \textit{Maximum a-Posteriori(MAP)} estimation. \\
+MAP: 
+\begin{center}
+$d^* = \argmax{d} p(s|d)p(d)$
+\end{center}
+
+
+%\vspace*{50px}
+ \begin{figure}
+\includegraphics[width=0.9\linewidth]{img/model.png}
+\caption{Two layer Bayesian Network for QMR-DT}
+\end{figure}
+
+%This statement requires citation \cite{Smith:2012qr}.
+
+\end{exampleblock}
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of the first column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
+
+\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column
+
+\begin{column}{\onecolwid}\vspace{-.74in} % The first column within column 2 (column 2.1)
+
+
+\begin{exampleblock}{State-of-Art}
+\begin{itemize}
+\item Old school knowledge-based systems are outdated
+\item Neural Networks are on one cutting edge 
+\item Bayesian methods are also quite popular. 
+\item QMR-DT is the most popular probabilistic model on which this project is built.
+\end{itemize}
+
+
+\end{exampleblock}
+
+
+
+\end{column} % End of column 2.1
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid}\vspace{-.74in} % The second column within column 2 (column 2.2)
+
+
+
+\begin{exampleblock}{Question Asking Strategies}
+
+
+\begin{itemize}
+\item \textbf{Relative-Entropy Based Strategy :} Minimize the Shannon Entropy
+\item \textbf{Strategy Based on Symptoms :} Rank the symptoms according to their number of occurance in distinct diseases
+\item \textbf{Strategy Based on Diseases :} Rank the diseases according to the number of symtoms that they are related
+\item \textbf{Strategy Based on Symptoms and RE :} Hybrid of first two
+\end{itemize}
+
+\end{exampleblock}
+
+
+
+\end{column} % End of column 2.2
+
+\end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
+
+
+
+\begin{alertblock}{Important Result}
+
+Large networks require so much power that makes the model nonutilizable after some point. So the model can be used for reduced problems.
+
+\end{alertblock} 
+
+%----------------------------------------------------------------------------------------
+
+\begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column again
+
+\begin{column}{\onecolwid} % The first column within column 2 (column 2.1)
+
+%----------------------------------------------------------------------------------------
+%	MATHEMATICAL SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Mathematical Section}
+Data description:
+\begin{equation}
+ds_{ij}\sim \mathcal{BE}(\big[0,1\big]; \pi_{0}, 1-\pi_{0}), \pi_{0}>>1-\pi_{0}
+\end{equation}
+
+Probability of not observing $s_{j}$ is:
+\begin{equation*}
+p(s_{i}=0|d) = \theta_{0}\prod_{j}\theta^{ds_{ij}d_{j}}
+\end{equation*}
+Probability of observing $s_{j}$ is:
+\begin{equation*}
+p(s_{i}=1|d) = 1- \theta_{0}\prod_{j}\theta^{ds_{ij}d_{j}}
+\end{equation*}
+$\theta_{0}$ is the probability of not observing a symptom when no disease related to it is present.
+\\
+%Quickscore decreases the multiplication of the previous two to:
+%\begin{equation*}
+%p(s^{-}) = \prod_{j}\Big[p(s^{-}|only d_{i})p(d_{i}^{+})+p(d_{i}^{-}))
+%\end{equation*}
+
+Minus log posterior: 
+\begin{equation*}
+-\mathcal{L}=-logp(d|s) \propto -logp(s|d)+log(1/p(d))
+\label{eqn:Minus log of posterior}
+\end{equation*}
+
+
+
+
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.1
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The second column within column 2 (column 2.2)
+
+%----------------------------------------------------------------------------------------
+%	RESULTS
+%----------------------------------------------------------------------------------------
+
+\begin{exampleblock}{Results}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{img/SmallNetwork10_20.png}
+\caption{QGS Comparison - Small Network(20 Symptoms)}
+\end{figure}
+
+\vspace{2cm}
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{img/LargeNetwork30_100.png}
+\caption{QGS Comparison - Large Network(100 Symptoms)}
+\end{figure}
+
+\end{exampleblock}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.2
+
+\end{columns} % End of the split of column 2
+
+\end{column} % End of the second column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\begin{column}{\onecolwid} % The third column
+
+
+
+\begin{exampleblock}{Conclusion}
+As mentioned, it's not working efficiently or even not tolerable for large networks. So, nonetheless it's very efficient and high scoring model for small networks, a scalable model seems necessary.
+
+
+\end{exampleblock}
+
+
+
+\begin{exampleblock}{Future Work}
+
+Delving into variational methods and their application to this domain since the inference is infeasible in large models. Besides them, Monte Carlo methods should be examined. \\
+As Confucius said "The man who moves a mountain begins by carrying away small stones." and this project was one of the smallest ones.
+
+
+\end{exampleblock}
+
+\begin{block}{Special Thanks to}
+
+\begin{itemize}
+\item My advisor Ali Taylan Cemgil for allowing me to participate this presentation after too much confusion of which I am responsible for, and helping me to make the simple and extremely necessary move.
+\item H{\i}d{\i}r Y\"{u}z\"{u}g\"{u}zel for his great project -UzmanDoktar, project report and implementation.
+\end{itemize}
+
+\end{block}
+
+\begin{tabular}{rr}
+\hspace{0.02\linewidth} & \includegraphics[scale=2.4]{img/bayes.jpeg}
+\end{tabular}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of the third column
+
+\begin{column}{\sepwid}\end{column} % Empty spacer column
+
+\end{columns} % End of all the columns in the poster
+
+\end{frame} % End of the enclosing frame
+%\end{darkframes} % Uncomment for dark theme
+\end{document}
+
