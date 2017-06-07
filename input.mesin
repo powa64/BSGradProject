@@ -1,0 +1,52 @@
+10
+20
+Disease1
+Disease2
+Disease3
+Disease4
+Disease5
+Disease6
+Disease7
+Disease8
+Disease9
+Disease10
+Symptom1
+Symptom2
+Symptom3
+Symptom4
+Symptom5
+Symptom6
+Symptom7
+Symptom8
+Symptom9
+Symptom10
+Symptom11
+Symptom12
+Symptom13
+Symptom14
+Symptom15
+Symptom16
+Symptom17
+Symptom18
+Symptom19
+Symptom20
+1 0	0 0 0 0 0 0 0 1
+0 0	1 1	0 0	1 0	0 0
+0 0	0 1	1 0	0 0	0 0
+0 0	0 0	1 0	0 0	1 1
+0 0	0 0	0 0	0 0	0 0
+1 1	0 0	0 0	0 0	0 1
+1 1	1 0	1 0	0 1	0 0
+0 0	0 0	1 1	0 0	0 1
+0 0	0 0	0 1	0 0	0 0
+0 0	0 1	0 0	0 0	0 1
+0 0	1 0	0 0	0 1	0 0
+0 1	0 0	1 1	1 0	0 0
+0 1	0 0	0 1	0 0	0 1
+1 0	0 0	1 0	1 0	0 1
+0 0	0 0	1 0	0 0	0 0
+0 0	1 0	0 1	0 0	0 0
+0 1	1 0	0 0	0 1	0 1
+1 1	1 1	0 0	0 0	0 0
+0 0	0 0	0 0	0 1	0 0
+0 0	0 0 1 0	0 0	1 0
